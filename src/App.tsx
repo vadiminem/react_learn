@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {Container, Stack} from "@mui/material";
+import {ITask} from "./models";
+import {EditDialog} from "./EditDialog/EditDialog";
+import {AddTask} from "./AddTask/AddTask";
+import {TasksList} from "./TasksList/TasksList";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [openEditDialog, setOpenEditDialog] = useState(false);
+    const [tasks, setTasks] = useState<ITask[]>([]);
+    const [editTask, setEditTask] = useState<ITask>({} as ITask);
+
+    return (
+        <Container maxWidth='sm'>
+            <EditDialog
+                open={openEditDialog}
+                setOpen={setOpenEditDialog}
+                task={editTask}
+                tasks={tasks}
+                setTasks={setTasks}
+            />
+            <Stack>
+                <AddTask
+                    tasks={tasks}
+                    setTasks={setTasks}
+                />
+                <TasksList
+                    tasks={tasks}
+                    setTasks={setTasks}
+                    setEditTask={setEditTask}
+                    setOpenEditDialog={setOpenEditDialog}
+                />
+            </Stack>
+        </Container>
+    );
 }
 
 export default App;
