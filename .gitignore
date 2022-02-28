@@ -26,3 +26,4 @@ yarn-error.log*
 /.idea/react_learn.iml
 /.idea/vcs.xml
 /.idea/.gitignore
+/.idea/webResources.xml
