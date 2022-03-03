@@ -15,7 +15,7 @@ export const AddTask = ({tasks, setTasks}: AddTaskProps) => {
         const name = textFieldValue.trim();
         if (name.length > 0) {
             const task: Task = {
-                id: tasks.length,
+                id: Date.now(),
                 name: name,
                 date: new Date(),
                 status: TaskStatus.Created

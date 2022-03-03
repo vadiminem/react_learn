@@ -23,7 +23,7 @@ export const TasksList = ({tasks, setTasks, setEditTask, setOpenEditDialog}: Tas
         const taskIndex = tasks.indexOf(task);
         const editedTasks = tasks;
         editedTasks[taskIndex].status = editedTasks[taskIndex].status === TaskStatus.Created ? TaskStatus.Started : TaskStatus.Completed;
-        setTasks([...editedTasks]);
+        setTasks(editedTasks);
     }
 
     const onDelete = (taskId: number): void => {
@@ -74,7 +74,7 @@ export const TasksList = ({tasks, setTasks, setEditTask, setOpenEditDialog}: Tas
                                 {t.name}
                             </Box>
                             <Box className="item-description">
-                                {t.status.toString()} | {t.date.toLocaleString()}
+                                {t.status.toString()} | {t.date.toLocaleString()} | {t.id}
                             </Box>
                         </Box>
                     </ListItem>)}
