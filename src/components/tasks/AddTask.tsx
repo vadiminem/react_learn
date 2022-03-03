@@ -1,10 +1,10 @@
 import {Box, Button, Grid, TextField} from "@mui/material";
 import React, {ChangeEvent, Dispatch, FormEvent, SetStateAction, useState} from "react";
-import {ITask, TaskStatus} from "../models";
+import {Task, TaskStatus} from "../../types/task";
 
 type AddTaskProps = {
-    tasks: ITask[];
-    setTasks: Dispatch<SetStateAction<ITask[]>>;
+    tasks: Task[];
+    setTasks: Dispatch<SetStateAction<Task[]>>;
 }
 
 export const AddTask = ({tasks, setTasks}: AddTaskProps) => {
@@ -14,7 +14,7 @@ export const AddTask = ({tasks, setTasks}: AddTaskProps) => {
         event.preventDefault();
         const name = textFieldValue.trim();
         if (name.length > 0) {
-            const task: ITask = {
+            const task: Task = {
                 id: tasks.length,
                 name: name,
                 date: new Date(),

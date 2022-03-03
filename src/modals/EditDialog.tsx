@@ -1,13 +1,13 @@
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField} from "@mui/material";
 import {ChangeEvent, Dispatch, SetStateAction, useState} from "react";
-import {ITask} from "../models";
+import {Task} from "../types/task";
 
 type EditDialogProps = {
     open: boolean;
     setOpen: Dispatch<SetStateAction<boolean>>;
-    task: ITask;
-    tasks: ITask[];
-    setTasks: Dispatch<SetStateAction<ITask[]>>;
+    task: Task;
+    tasks: Task[];
+    setTasks: Dispatch<SetStateAction<Task[]>>;
 }
 
 export const EditDialog = ({open, setOpen, task, tasks, setTasks}: EditDialogProps) => {

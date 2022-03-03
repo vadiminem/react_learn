@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
-import './App.css';
 import {Container, Stack} from "@mui/material";
-import {ITask} from "./models";
-import {EditDialog} from "./EditDialog/EditDialog";
-import {AddTask} from "./AddTask/AddTask";
-import {TasksList} from "./TasksList/TasksList";
+import {EditDialog} from "./modals";
+import {AddTask} from "./components/tasks";
+import {TasksList} from "./components/tasks";
+import {Task} from "./types/task";
 
 function App() {
     const [openEditDialog, setOpenEditDialog] = useState(false);
-    const [tasks, setTasks] = useState<ITask[]>([]);
-    const [editTask, setEditTask] = useState<ITask>({} as ITask);
+    const [tasks, setTasks] = useState<Task[]>([]);
+    const [editTask, setEditTask] = useState<Task>({} as Task);
 
     return (
         <Container maxWidth='sm'>

@@ -1,14 +1,14 @@
 import {Box, IconButton, List, ListItem} from "@mui/material";
-import {ITask, TaskStatus} from "../models";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import React, {Dispatch, SetStateAction} from "react";
 import {Done, PlayArrow} from "@mui/icons-material";
+import {Task, TaskStatus} from "../../types/task";
 
 type TasksListProps = {
-    tasks: ITask[];
-    setTasks: Dispatch<SetStateAction<ITask[]>>;
-    setEditTask: Dispatch<SetStateAction<ITask>>;
+    tasks: Task[];
+    setTasks: Dispatch<SetStateAction<Task[]>>;
+    setEditTask: Dispatch<SetStateAction<Task>>;
     setOpenEditDialog: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -19,7 +19,7 @@ export const TasksList = ({tasks, setTasks, setEditTask, setOpenEditDialog}: Tas
         return <Done/>;
     }
 
-    const onStatusChange = (task: ITask): void => {
+    const onStatusChange = (task: Task): void => {
         const taskIndex = tasks.indexOf(task);
         const editedTasks = tasks;
         editedTasks[taskIndex].status = editedTasks[taskIndex].status === TaskStatus.Created ? TaskStatus.Started : TaskStatus.Completed;
@@ -30,7 +30,7 @@ export const TasksList = ({tasks, setTasks, setEditTask, setOpenEditDialog}: Tas
         setTasks(tasks.filter(t => t.id !== taskId));
     }
 
-    const onEdit = (task: ITask): void => {
+    const onEdit = (task: Task): void => {
         setEditTask(task);
         setOpenEditDialog(true);
     }

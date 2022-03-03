@@ -1,13 +1,30 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.task-item {
+    width: 100%;
+    margin: 8px 0 8px 0;
+    -webkit-box-shadow: 0 0 7px -2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0 0 7px -2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0 0 7px -2px rgba(34, 60, 80, 0.2);
+}
+
+.item-description {
+    font-size: 0.8rem;
+    vertical-align: middle;
+}
+
+.add-task-field {
+    width: 100%;
 }
