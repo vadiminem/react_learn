@@ -27,3 +27,4 @@ yarn-error.log*
 /.idea/vcs.xml
 /.idea/.gitignore
 /.idea/webResources.xml
+/.idea/prettier.xml

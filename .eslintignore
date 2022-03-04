@@ -1,0 +1,11 @@
+node_modules
+dist
+build
+lib
+es
+esm
+umd
+eslint
+coverage/
+serverless-dist
+__generated__
