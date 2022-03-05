@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Button,
   Dialog,
@@ -6,21 +7,27 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
-import React, { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
-import { Task } from '../types/task';
 
-type EditDialogProps = {
+import { Task } from 'types/task';
+
+interface EditDialogProps {
   open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   task: Task;
   tasks: Task[];
-  setTasks: Dispatch<SetStateAction<Task[]>>;
-};
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+}
 
-export const EditDialog = ({ open, setOpen, task, tasks, setTasks }: EditDialogProps) => {
-  const [fieldValue, setFieldValue] = useState<string>('');
+export const EditDialog: React.FC<EditDialogProps> = ({
+  open,
+  setOpen,
+  task,
+  tasks,
+  setTasks,
+}: EditDialogProps) => {
+  const [fieldValue, setFieldValue] = React.useState<string>('');
 
-  const handleSave = (): void => {
+  const onSave = (): void => {
     const name = fieldValue.trim();
     if (name.length > 0) {
       setOpen(false);
@@ -31,23 +38,23 @@ export const EditDialog = ({ open, setOpen, task, tasks, setTasks }: EditDialogP
     }
   };
 
-  const handleClose = (): void => {
+  const onClose = (): void => {
     setOpen(false);
   };
 
-  const handleTextChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const onTextChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setFieldValue(event.target.value);
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={onClose}>
       <DialogTitle>Edit Task</DialogTitle>
       <DialogContent>
-        <TextField autoFocus defaultValue={task.name} onChange={handleTextChange} />
+        <TextField autoFocus defaultValue={task.name} onChange={onTextChange} />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleSave}>Save</Button>
+        <Button onClick={onClose}>Cancel</Button>
+        <Button onClick={onSave}>Save</Button>
       </DialogActions>
     </Dialog>
   );

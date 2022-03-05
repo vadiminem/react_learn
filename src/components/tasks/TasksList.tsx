@@ -1,18 +1,24 @@
+import React from 'react';
 import { Box, IconButton, List, ListItem } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import React, { Dispatch, SetStateAction } from 'react';
 import { Done, PlayArrow } from '@mui/icons-material';
-import { Task, TaskStatus } from '../../types/task';
 
-type TasksListProps = {
+import { Task, TaskStatus } from 'types/task';
+
+interface TasksListProps {
   tasks: Task[];
-  setTasks: Dispatch<SetStateAction<Task[]>>;
-  setEditTask: Dispatch<SetStateAction<Task>>;
-  setOpenEditDialog: Dispatch<SetStateAction<boolean>>;
-};
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  setEditTask: React.Dispatch<React.SetStateAction<Task>>;
+  setOpenEditDialog: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-export const TasksList = ({ tasks, setTasks, setEditTask, setOpenEditDialog }: TasksListProps) => {
+export const TasksList: React.FC<TasksListProps> = ({
+  tasks,
+  setTasks,
+  setEditTask,
+  setOpenEditDialog,
+}: TasksListProps) => {
   const checkStatus = (status: TaskStatus): JSX.Element => {
     if (status === TaskStatus.Created) return <PlayArrow />;
     return <Done />;
@@ -37,20 +43,20 @@ export const TasksList = ({ tasks, setTasks, setEditTask, setOpenEditDialog }: T
     setOpenEditDialog(true);
   };
 
-  const getTaskActions = (t: Task) => {
+  const getTaskActions = (task: Task): JSX.Element => {
     return (
       <React.Fragment>
-        {t.status !== TaskStatus.Completed && (
+        {task.status !== TaskStatus.Completed && (
           <React.Fragment>
-            <IconButton aria-label="status" onClick={() => onStatusChange(t)}>
-              {checkStatus(t.status)}
+            <IconButton aria-label="status" onClick={() => onStatusChange(task)}>
+              {checkStatus(task.status)}
             </IconButton>
-            <IconButton aria-label="edit" onClick={() => onEdit(t)}>
+            <IconButton aria-label="edit" onClick={() => onEdit(task)}>
               <EditIcon />
             </IconButton>
           </React.Fragment>
         )}
-        <IconButton aria-label="delete" onClick={() => onDelete(t.id)}>
+        <IconButton aria-label="delete" onClick={() => onDelete(task.id)}>
           <DeleteIcon />
         </IconButton>
       </React.Fragment>
@@ -60,12 +66,12 @@ export const TasksList = ({ tasks, setTasks, setEditTask, setOpenEditDialog }: T
   return (
     <Box>
       <List>
-        {tasks.map(t => (
-          <ListItem key={t.id} className="task-item" secondaryAction={getTaskActions(t)}>
+        {tasks.map(task => (
+          <ListItem key={task.id} className="task-item" secondaryAction={getTaskActions(task)}>
             <Box>
-              <Box>{t.name}</Box>
+              <Box>{task.name}</Box>
               <Box className="item-description">
-                {t.status.toString()} | {t.date.toLocaleString()}
+                {task.status.toString()} | {task.date.toLocaleString()}
               </Box>
             </Box>
           </ListItem>

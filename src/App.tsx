@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Stack } from '@mui/material';
-import { EditDialog } from './modals';
-import { AddTask, TasksList } from './components/tasks';
-import { Task } from './types/task';
 
-function App() {
-  const [openEditDialog, setOpenEditDialog] = useState(false);
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [editTask, setEditTask] = useState<Task>({} as Task);
+import { EditDialog } from 'modals';
+import { AddTask, TasksList } from 'components/tasks';
+import { Task } from 'types/task';
+
+export const App: React.FC = () => {
+  const [openEditDialog, setOpenEditDialog] = React.useState(false);
+  const [tasks, setTasks] = React.useState<Task[]>([]);
+  const [editTask, setEditTask] = React.useState<Task>({} as Task);
 
   return (
     <Container maxWidth="sm">
@@ -29,6 +30,4 @@ function App() {
       </Stack>
     </Container>
   );
-}
-
-export default App;
+};

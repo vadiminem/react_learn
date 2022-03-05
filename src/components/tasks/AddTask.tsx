@@ -1,16 +1,17 @@
+import React from 'react';
 import { Box, Button, Grid, TextField } from '@mui/material';
-import React, { ChangeEvent, Dispatch, FormEvent, SetStateAction, useState } from 'react';
-import { Task, TaskStatus } from '../../types/task';
 
-type AddTaskProps = {
+import { Task, TaskStatus } from 'types/task';
+
+interface AddTaskProps {
   tasks: Task[];
-  setTasks: Dispatch<SetStateAction<Task[]>>;
-};
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+}
 
-export const AddTask = ({ tasks, setTasks }: AddTaskProps) => {
-  const [textFieldValue, setTextFieldValue] = useState<string>('');
+export const AddTask: React.FC<AddTaskProps> = ({ tasks, setTasks }: AddTaskProps) => {
+  const [textFieldValue, setTextFieldValue] = React.useState<string>('');
 
-  const onAddTask = (event: FormEvent): void => {
+  const onAddTask = (event: React.FormEvent): void => {
     event.preventDefault();
     const name = textFieldValue.trim();
     if (name.length > 0) {
@@ -25,7 +26,7 @@ export const AddTask = ({ tasks, setTasks }: AddTaskProps) => {
     }
   };
 
-  const onValueChanged = (event: ChangeEvent<HTMLInputElement>): void => {
+  const onValueChanged = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setTextFieldValue(event.target.value);
   };
 
