@@ -18,7 +18,7 @@ export const TasksList: React.FC<TasksListProps> = ({
   setTasks,
   setEditTask,
   setOpenEditDialog,
-}: TasksListProps) => {
+}) => {
   const checkStatus = (status: TaskStatus): JSX.Element => {
     if (status === TaskStatus.Created) return <PlayArrow />;
     return <Done />;

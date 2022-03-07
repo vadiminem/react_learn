@@ -18,13 +18,7 @@ interface EditDialogProps {
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 }
 
-export const EditDialog: React.FC<EditDialogProps> = ({
-  open,
-  setOpen,
-  task,
-  tasks,
-  setTasks,
-}: EditDialogProps) => {
+export const EditDialog: React.FC<EditDialogProps> = ({ open, setOpen, task, tasks, setTasks }) => {
   const [fieldValue, setFieldValue] = React.useState<string>('');
 
   const onSave = (): void => {
