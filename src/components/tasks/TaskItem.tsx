@@ -6,14 +6,14 @@ import { Task, TaskStatus } from 'types/task';
 
 interface TaskItemProps {
   task: Task;
-  onTaskStatusChanged: (task: Task) => void;
+  onTaskStatusChange: (taskId: number) => void;
   onEditTask: (task: Task) => void;
   onDeleteTask: (taskId: number) => void;
 }
 
 export const TaskItem: React.FC<TaskItemProps> = ({
   task,
-  onTaskStatusChanged,
+  onTaskStatusChange,
   onEditTask,
   onDeleteTask,
 }) => {
@@ -22,8 +22,8 @@ export const TaskItem: React.FC<TaskItemProps> = ({
     return <Done />;
   };
 
-  const onStatusChanged = () => {
-    onTaskStatusChanged(task);
+  const onStatusChange = () => {
+    onTaskStatusChange(task.id);
   };
 
   const onEdit = () => {
@@ -39,7 +39,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
       <React.Fragment>
         {task.status !== TaskStatus.Completed && (
           <React.Fragment>
-            <IconButton aria-label="status" onClick={onStatusChanged}>
+            <IconButton aria-label="status" onClick={onStatusChange}>
               {renderTaskStatus(task.status)}
             </IconButton>
             <IconButton aria-label="edit" onClick={onEdit}>

@@ -12,28 +12,19 @@ import { Task } from 'types/task';
 
 interface EditDialogProps {
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   task: Task | null;
-  tasks: Task[];
-  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  onSaveTask: (editedTask: Task) => void;
+  onClose: () => void;
 }
 
-export const EditDialog: React.FC<EditDialogProps> = ({ open, setOpen, task, tasks, setTasks }) => {
+export const EditDialog: React.FC<EditDialogProps> = ({ open, task, onSaveTask, onClose }) => {
   const [fieldValue, setFieldValue] = React.useState<string>('');
 
   const onSave = (): void => {
     const name = fieldValue.trim();
     if (name.length > 0 && task) {
-      setOpen(false);
-      const index = tasks.indexOf(task);
-      const newTasks = tasks;
-      newTasks[index].name = name;
-      setTasks(newTasks);
+      onSaveTask({ ...task, name });
     }
-  };
-
-  const onClose = (): void => {
-    setOpen(false);
   };
 
   const onTextChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
