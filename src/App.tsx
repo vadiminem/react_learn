@@ -41,14 +41,15 @@ export const App: React.FC = () => {
   };
 
   const onEditTaskDialogSave = (editedTask: Task): void => {
-    setOpenEditDialog(false);
     const newTasks = tasks.map((task: Task) => {
       if (task.id === editedTask.id) {
-        task = editedTask;
+        return editedTask;
       }
       return task;
     });
+
     setTasks(newTasks);
+    setOpenEditDialog(false);
   };
 
   const onEditTaskDialogClose = (): void => {
