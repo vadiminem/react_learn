@@ -7,7 +7,7 @@ import { TaskItem } from './TaskItem';
 interface TasksListProps {
   tasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
-  setEditTask: React.Dispatch<React.SetStateAction<Task>>;
+  setEditTask: React.Dispatch<React.SetStateAction<Task | null>>;
   setOpenEditDialog: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

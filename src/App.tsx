@@ -8,7 +8,7 @@ import { Task } from 'types/task';
 export const App: React.FC = () => {
   const [openEditDialog, setOpenEditDialog] = React.useState(false);
   const [tasks, setTasks] = React.useState<Task[]>([]);
-  const [editTask, setEditTask] = React.useState<Task>({} as Task);
+  const [editTask, setEditTask] = React.useState<Task | null>(null);
 
   return (
     <Container maxWidth="sm">

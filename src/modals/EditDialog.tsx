@@ -13,7 +13,7 @@ import { Task } from 'types/task';
 interface EditDialogProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  task: Task;
+  task: Task | null;
   tasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 }
@@ -23,7 +23,7 @@ export const EditDialog: React.FC<EditDialogProps> = ({ open, setOpen, task, tas
 
   const onSave = (): void => {
     const name = fieldValue.trim();
-    if (name.length > 0) {
+    if (name.length > 0 && task) {
       setOpen(false);
       const index = tasks.indexOf(task);
       const newTasks = tasks;
@@ -44,7 +44,7 @@ export const EditDialog: React.FC<EditDialogProps> = ({ open, setOpen, task, tas
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Edit Task</DialogTitle>
       <DialogContent>
-        <TextField autoFocus defaultValue={task.name} onChange={onTextChange} />
+        <TextField autoFocus defaultValue={task?.name} onChange={onTextChange} />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
