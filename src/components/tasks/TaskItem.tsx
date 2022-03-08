@@ -17,7 +17,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   onEditTask,
   onDeleteTask,
 }) => {
-  const checkStatus = (status: TaskStatus): JSX.Element => {
+  const renderTaskStatus = (status: TaskStatus): JSX.Element => {
     if (status === TaskStatus.Created) return <PlayArrow />;
     return <Done />;
   };
@@ -40,7 +40,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
         {task.status !== TaskStatus.Completed && (
           <React.Fragment>
             <IconButton aria-label="status" onClick={onStatusChanged}>
-              {checkStatus(task.status)}
+              {renderTaskStatus(task.status)}
             </IconButton>
             <IconButton aria-label="edit" onClick={onEdit}>
               <Edit />
