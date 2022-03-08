@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Stack } from '@mui/material';
 
 import { EditDialog } from 'modals';
-import { AddTask, TasksList } from 'components/tasks';
+import { AddTaskForm, TasksList } from 'components/tasks';
 import { Task } from 'types/task';
 
 export const App: React.FC = () => {
@@ -20,7 +20,7 @@ export const App: React.FC = () => {
         setTasks={setTasks}
       />
       <Stack>
-        <AddTask tasks={tasks} setTasks={setTasks} />
+        <AddTaskForm tasks={tasks} setTasks={setTasks} />
         <TasksList
           tasks={tasks}
           setTasks={setTasks}

@@ -8,7 +8,7 @@ interface AddTaskProps {
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 }
 
-export const AddTask: React.FC<AddTaskProps> = ({ tasks, setTasks }) => {
+export const AddTaskForm: React.FC<AddTaskProps> = ({ tasks, setTasks }) => {
   const [textFieldValue, setTextFieldValue] = React.useState<string>('');
 
   const onAddTask = (event: React.FormEvent): void => {
