@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container, Stack } from '@mui/material';
+import { Box, Container, Stack } from '@mui/material';
 
 import { EditDialog } from 'modals';
 import { AddTaskForm, TasksList } from 'components/tasks';
-import { useTasksProvider } from 'hooks';
+import { useData, useTasksProvider } from 'hooks';
 
 export const App: React.FC = () => {
   const {
@@ -17,6 +17,8 @@ export const App: React.FC = () => {
     saveEditedTask,
     closeEditDialog,
   } = useTasksProvider();
+
+  const [, loading] = useData(5);
 
   return (
     <Container maxWidth="sm">
@@ -34,6 +36,7 @@ export const App: React.FC = () => {
           onEditTask={editTask}
           onDeleteTask={deleteTask}
         />
+        <Box>loading: {loading ? 'true' : 'false'}</Box>
       </Stack>
     </Container>
   );
