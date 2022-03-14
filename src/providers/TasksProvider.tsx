@@ -15,7 +15,7 @@ interface TasksContextType {
 }
 
 const initialTasksContext: TasksContextType = {
-  tasks: {} as Task[],
+  tasks: [],
   editableTask: null,
   openEditDialog: false,
   createTask: () => {},
@@ -60,10 +60,13 @@ export const TasksProvider: React.FC = ({ children }) => {
     [tasks],
   );
 
-  const editTask = React.useCallback((task: Task) => {
-    setEditableTask(task);
-    setOpenEditDialog(true);
-  }, []);
+  const editTask = React.useCallback(
+    (task: Task) => {
+      setEditableTask(task);
+      setOpenEditDialog(true);
+    },
+    [setEditableTask, setOpenEditDialog],
+  );
 
   const deleteTask = React.useCallback(
     (taskId: number) => {
@@ -89,7 +92,7 @@ export const TasksProvider: React.FC = ({ children }) => {
 
   const closeEditDialog = React.useCallback(() => {
     setOpenEditDialog(false);
-  }, []);
+  }, [setOpenEditDialog]);
 
   return (
     <TasksContext.Provider

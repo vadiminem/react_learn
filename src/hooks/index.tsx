@@ -1,2 +1,2 @@
-export * from './useTasksProvider';
+export * from './useTasks';
 export * from './useData';

@@ -1,18 +1,17 @@
 import React from 'react';
 import { Box, Button, Grid, TextField } from '@mui/material';
 
-interface AddTaskProps {
-  onCreateTask: (taskName: string) => void;
-}
+import { useTasks } from 'hooks';
 
-export const AddTaskForm: React.FC<AddTaskProps> = ({ onCreateTask }) => {
+export const AddTaskForm: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = React.useState<string>('');
+  const { createTask } = useTasks();
 
   const onAddTask = (event: React.FormEvent): void => {
     event.preventDefault();
     const name = textFieldValue.trim();
     if (name.length > 0) {
-      onCreateTask(name);
+      createTask(name);
       setTextFieldValue('');
     }
   };

@@ -1,20 +1,20 @@
 import React from 'react';
 
-export const useData = (delay: number) => {
+import { delay } from 'utils';
+
+export const useData = <T,>(delayMs: number): [T[], boolean] => {
   const [loading, setLoading] = React.useState<boolean>(false);
-  const [data, setData] = React.useState<any[]>([]);
+  const [data, setData] = React.useState<T[]>([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      setTimeout(() => {
-        setData([]);
-        setLoading(false);
-      }, delay * 1000);
+      await delay(delayMs);
+      setLoading(false);
     };
 
     fetchData();
-  }, [delay, setData]);
+  }, [delayMs, setData]);
 
   return [data, loading];
 };

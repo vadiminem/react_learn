@@ -3,35 +3,30 @@ import { Box, IconButton, ListItem } from '@mui/material';
 import { Delete, Done, Edit, PlayArrow } from '@mui/icons-material';
 
 import { Task, TaskStatus } from 'types/task';
+import { useTasks } from 'hooks';
 
 interface TaskItemProps {
   task: Task;
-  onTaskStatusChange: (taskId: number) => void;
-  onEditTask: (task: Task) => void;
-  onDeleteTask: (taskId: number) => void;
 }
 
-export const TaskItem: React.FC<TaskItemProps> = ({
-  task,
-  onTaskStatusChange,
-  onEditTask,
-  onDeleteTask,
-}) => {
+export const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
+  const { changeTaskStatus, editTask, deleteTask } = useTasks();
+
   const renderTaskStatus = (status: TaskStatus): JSX.Element => {
     if (status === TaskStatus.Created) return <PlayArrow />;
     return <Done />;
   };
 
   const onStatusChange = () => {
-    onTaskStatusChange(task.id);
+    changeTaskStatus(task.id);
   };
 
   const onEdit = () => {
-    onEditTask(task);
+    editTask(task);
   };
 
   const onDelete = () => {
-    onDeleteTask(task.id);
+    deleteTask(task.id);
   };
 
   const getTaskActions = (task: Task): JSX.Element => {
