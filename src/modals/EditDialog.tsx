@@ -8,22 +8,16 @@ import {
   TextField,
 } from '@mui/material';
 
-import { Task } from 'types/task';
+import { useTasks } from 'hooks';
 
-interface EditDialogProps {
-  open: boolean;
-  task: Task | null;
-  onSaveTask: (editedTask: Task) => void;
-  onClose: () => void;
-}
-
-export const EditDialog: React.FC<EditDialogProps> = ({ open, task, onSaveTask, onClose }) => {
+export const EditDialog: React.FC = () => {
   const [fieldValue, setFieldValue] = React.useState<string>('');
+  const { editableTask, openEditDialog, saveEditedTask, closeEditDialog } = useTasks();
 
   const onSave = (): void => {
     const name = fieldValue.trim();
-    if (name.length > 0 && task) {
-      onSaveTask({ ...task, name });
+    if (name.length > 0 && editableTask) {
+      saveEditedTask({ ...editableTask, name });
     }
   };
 
@@ -32,13 +26,13 @@ export const EditDialog: React.FC<EditDialogProps> = ({ open, task, onSaveTask, 
   };
 
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={openEditDialog} onClose={closeEditDialog}>
       <DialogTitle>Edit Task</DialogTitle>
       <DialogContent>
-        <TextField autoFocus defaultValue={task?.name} onChange={onTextChange} />
+        <TextField autoFocus defaultValue={editableTask?.name} onChange={onTextChange} />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
+        <Button onClick={closeEditDialog}>Cancel</Button>
         <Button onClick={onSave}>Save</Button>
       </DialogActions>
     </Dialog>
